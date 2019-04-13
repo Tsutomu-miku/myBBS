@@ -2,7 +2,7 @@
 <div class="container">
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{'../'}}"><img src="{% static '/images/4.png' %}" alt="" width="100px"></a>
+            <a class="navbar-brand" href="{{'/'}}"><img src="{% static '/images/4.png' %}" alt="" width="100px"></a>
         </div>
         <div>
             <ul class="nav navbar-nav" role="navigation">
@@ -16,8 +16,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right" style="margin:5px">
                 {% if user.is_authenticated %}
-                  <!-- <li><a href="#">{{ user.username }}</a></li> -->
-                  
+                  <!-- <li><a href="#">{{ user.username }}</a></li> -->                 
                   <li>
                     <div class="dropdown" style="margin-top: 8px">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu"
