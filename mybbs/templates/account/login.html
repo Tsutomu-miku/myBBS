@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block titile %}
+    Login
+{% endblock titile %}
+
+{% block content %}
+    <div class="row text-center vertical-middle-sm">
+        <h1>
+            Login
+        </h1>
+        <P>Input your username and password</P>
+        <form action="." class="form-horizontal" method="POST">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <!-- 相当于将form内容用P标签展示 类似的还有 as_ul as_table -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label"
+                style="color:rgba(255, 126, 126, 0.692)">
+                    <span class="glyphicon glyphicon-user"></span>Username
+                </label>
+                <div class="col-md-6 text-left " >{{ form.username }}</div>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}" class="col-md-5 control-label"
+                style="color:rgb(92, 195, 255)">
+                    <span class="glyphicon glyphicon-floppy-open"></span>Password
+                </label>
+                <div class="col-md-6 text-left  " >{{ form.password }}</div>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <script>
+        $('input').addClass('input-sm')
+    </script>
+{% endblock content %}

@@ -1,0 +1,43 @@
+
+
+{% extends "article/base.html" %}
+{% load staticfiles %}
+{% block title %}create lesson{% endblock %}
+{% block content %}
+<div style="margin-left:200px;margin-top:10px;">
+    <form enctype="multipart/form-data" action="." method="post" class="form-horizontal "> 
+        {% csrf_token %}
+        <div class="form-group" style="margin-top: 10px;">
+            <div class="col-md-2 text-left"><span>内容标题:</span></div>
+            <div class="col-md-10 text-left">{{form.title}}</div> 
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+            <div class="col-md-2 text-left"><span>所属课程:</span></div> 
+            <div class="col-md-10 text-left">{{form.course}}</div>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+            <div class="col-md-2 text-left"><span>上传视频:</span></div>
+            <div class="col-md-10 text-left">{{form.video}}</div> 
+        </div>
+        <div  class="form-group" style="margin-top: 20px;">
+            <div class="col-md-2 text-left"><span>视频描述:</span></div> 
+            <div class="col-md-10 text-left">{{form.description}}</div>
+        </div>
+        <div class="form-group " style="margin-top: 20px;">
+            <div class="col-md-2 text-left"><span>本课附件:</span></div>
+            <div class="col-md-10 text-left">{{form.attach}}</div> 
+        </div>
+        <div class="form-group" style="margin-top: 20px;" class="text-center"> 
+            <input class="btn btn-primary btn-sm " type="submit" value="创建课程">
+        </div>
+  </form>
+</div>
+<script type="text/javascript" src='{% static "js/jquery.js" %}'></script>
+<script>
+    $('.list-group-item').eq(6).addClass('active');
+    $('.list-group-item a').eq(6).css("color","white");
+    $('input').eq(1).addClass("form-control");
+    $('textarea').addClass("form-control rol=5")
+    $('select').addClass("selectpicker show-tick form-control")
+</script>
+{% endblock %}

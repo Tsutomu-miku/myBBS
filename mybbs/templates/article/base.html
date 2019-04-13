@@ -1,0 +1,37 @@
+{% load staticfiles %} 
+<!DOCTYPE html>
+<html lang="zh-cn"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% include 'article/header.html' %} 
+        <div class="col-md-2">
+            {% include 'article/leftslider.html' %} 
+        </div>
+        <div class="col-md-10">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="col-md-12">{% include 'article/footer.html' %} </div>
+        
+    </div>
+    
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    
+    <!-- <script>
+        // $('li').addClass('active');
+        $(".list-group-item").on("click", function(){
+            $(".list-group-item").removeClass("active");
+            $(this).addClass("active")
+        })
+    </script> -->
+</body>
+</html>

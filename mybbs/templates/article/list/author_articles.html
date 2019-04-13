@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load article_tags %}
+{% load staticfiles %}
+{% block title %}articles{% endblock %}
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+    <h1>阅读，丰富头脑，善化行为</h1>
+</div>
+<div class="container">
+    <div class="col-md-8">
+        {% for article in articles %}
+        <div class="list-group">
+            <a href="{{article.get_url_path}}" class="list-group-item active">
+                <h4 class="list-group-item-heading">
+                    {{article.title}}
+                </h4>
+            </a>
+            <a href="{% url 'article:author_articles' article.author.username %}" class="list-group-item">
+                <!-- <h4 class="list-group-item-heading">
+                    作者
+                </h4> -->
+                <p class="list-group-item-text">
+                    作者:{{article.author.username}}
+                </p>
+            </a>
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">摘要</h4>
+                <p class="list-group-item-text">{{article.body|slice:'70'| linebreaks}}</p>
+            </a>
+        </div>
+        {% endfor %}
+        {% include "paginator.html" %}
+    </div>
+    <div class="col-md-4">
+
+        <!-- <div class="text-center" style="margin-top: 20px">
+            <p ><strong>{{ user.username }}</strong> </p>
+            <button class="btn btn-default">{{ user.username }}</button>
+            <p>共发表文章{% author_total_articles user %}篇文章</p>
+            {% if userinfo %}
+            <p>{{ userinfo.company }}</p>
+            <p>{{ userinfo.aboutme }}</p>
+            {% else %}
+            <p>这个作者太懒了，什么也没有留下。</p>
+            {% endif %}
+        </div> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ user.username }}</h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="text-center">
+                    {% if userinfo.photo %}
+                    <img src="{{ userinfo.photo | striptags }}" class="img-circle" id="my_photo" name="user_face"
+                        style="width: 250px">
+                    {% else %}
+                    <img name="user_face" src="{% static 'images/newton.jpg' %}" class="img-circle" id="my_photo"
+                        style="width: 250px">
+                    {% endif %}
+                </div>
+                <hr>
+                <p>共发表文章{% author_total_articles user %}篇文章</p>
+                {% if userinfo %}
+                <p>{{ userinfo.company }}</p>
+                <p>{{ userinfo.aboutme }}</p>
+                {% else %}
+                <p>这个作者太懒了，什么也没有留下。</p>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
