@@ -20,6 +20,8 @@ from django.views.generic import TemplateView#引用通用视图
 
 from django.conf import settings
 from django.conf.urls.static import static
+
+from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/',include('blog.urls')),
@@ -29,5 +31,8 @@ urlpatterns = [
     path('home/',TemplateView.as_view(template_name='home.html')),
     path('image/', include('image.urls', namespace='image')),
     path('course/', include('course.urls', namespace='course')),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATICFILES_DIRS[0]}, name='static'),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}, name='static'),
+
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
