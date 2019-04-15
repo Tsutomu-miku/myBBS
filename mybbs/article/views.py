@@ -138,8 +138,6 @@ def redit_article(request, article_id):#通过article_id 获得文章对象
         redit_article = ArticlePost.objects.get(id=article_id)
         try:
             redit_article.column = request.user.article_column.get(id=request.POST['column_id']) 
-            
-            
             redit_article.title = request.POST['title']
             redit_article.body = request.POST['body'] 
             redit_article.save()

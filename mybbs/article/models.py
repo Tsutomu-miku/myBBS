@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone 
 from django.urls import reverse
 from slugify import slugify
-
-
+from unidecode import unidecode
+from django.template import defaultfilters
 class ArticleColumn(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='article_column')
     column = models.CharField(max_length=200) 
@@ -39,7 +39,7 @@ class ArticlePost(models.Model):
         return self.title
 
     def save(self, *args, **kargs): 
-        self.slug = slugify(self.title) # 存储slug 
+        self.slug = defaultfilters.slugify(unidecode(self.title)) # 存储slug 
         super(ArticlePost, self).save(*args, **kargs) # ?
 
     def get_absolute_url(self):

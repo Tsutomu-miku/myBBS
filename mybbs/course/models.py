@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from slugify import slugify
 from .fields import OrderField
-
+from unidecode import unidecode
+from django.template import defaultfilters
 class Course(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='courses_user') 
     title = models.CharField(max_length=200)
@@ -15,7 +16,7 @@ class Course(models.Model):
         ordering = ('-created',)
         
     def save(self, *args, **kargs):
-        self.slug = slugify(self.title) 
+        self.slug = defaultfilters.slugify(unidecode(self.title)) 
         super(Course, self).save(*args, **kargs)
         
     def __str__(self): 
